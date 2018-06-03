@@ -17,9 +17,9 @@
 # under the License.
 # coding=utf-8
 
-from com.aliyun.api.gateway.sdk.common import constant
-from com.aliyun.api.gateway.sdk.auth import sha_hmac256
-from com.aliyun.api.gateway.sdk.util import DateUtil
+from aliyun_api_gateway_demo_sign.com.aliyun.api.gateway.sdk.common import constant
+from aliyun_api_gateway_demo_sign.com.aliyun.api.gateway.sdk.auth import sha_hmac256
+from aliyun_api_gateway_demo_sign.com.aliyun.api.gateway.sdk.util import DateUtil
 import time
 
 
@@ -68,8 +68,7 @@ def _build_resource(uri="", body={}):
     resource.append(uri)
     if body:
         resource.append("?")
-        param_list = body.keys()
-        param_list.sort()
+        param_list = sorted(body)
         first = True
         for key in param_list:
             if not first:
@@ -99,8 +98,7 @@ def _format_header(headers={}):
     lf = '\n'
     temp_headers = []
     if len(headers) > 0:
-        header_list = headers.keys()
-        header_list.sort()
+        header_list = sorted(headers)
         signature_headers = []
         for k in header_list:
             if k.startswith("X-Ca-"):
